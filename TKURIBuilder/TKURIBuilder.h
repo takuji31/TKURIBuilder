@@ -9,5 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface TKURIBuilder : NSObject
+@property NSString *scheme;
+@property NSString *path;
+@property NSMutableDictionary *query;
+@property NSString *fragment;
 
+-(id) init;
+-(id) initWithUriString:(NSString *)uriString;
+-(id) initWithURL:(NSURL *)url;
+-(id) initWithUriString:(NSString *)uriString andParams:(NSDictionary *)params;
+
+-(NSString *) buildString;
+-(NSURL *) buildURL;
 @end
