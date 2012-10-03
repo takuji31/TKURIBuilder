@@ -16,12 +16,17 @@
 @property NSString *fragment;
 
 -(id) init;
+/*
+TODO
 -(id) initWithUriString:(NSString *)uriString;
 -(id) initWithURL:(NSURL *)url;
 -(id) initWithUriString:(NSString *)uriString andParams:(NSDictionary *)params;
+*/
 
 +(NSString *)encode:(NSString *)str;
 +(NSString *)decode:(NSString *)str;
++(TKURIBuilder *)httpURIBuilder;
++(TKURIBuilder *)httpsURIBuilder;
 
 -(NSString *) buildString;
 -(NSURL *) buildURL;

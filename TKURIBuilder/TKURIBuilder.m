@@ -10,6 +10,18 @@
 
 @implementation TKURIBuilder
 
++(TKURIBuilder *)httpURIBuilder {
+    TKURIBuilder *builder = [[self alloc]init];
+    builder.scheme = @"http";
+    return builder;
+}
+
++(TKURIBuilder *)httpsURIBuilder {
+    TKURIBuilder *builder = [[self alloc]init];
+    builder.scheme = @"https";
+    return builder;
+}
+
 +(NSString *)encode:(NSString *)str {
     return (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
                                                         NULL,
