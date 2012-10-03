@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (self) {
-        self.query = [@{} mutableCopy];
+        self.query = [@[] mutableCopy];
     }
     return self;
 }
@@ -49,6 +49,7 @@
 {
     self = [self init];
     if (self) {
+#warning TODO parse query dictionary
         self.query = [params mutableCopy];
 #warning TODO parse uri string
     }
@@ -73,9 +74,12 @@
     }
     [uri appendString:path];
     NSMutableString *queryString = [@"" mutableCopy];
-    for (NSString *name in [_query keyEnumerator]) {
-        NSString *param = [_query objectForKey:name];
-        [queryString appendFormat:@"&%@=%@", [TKURIBuilder encode:name], [TKURIBuilder encode:param]];
+    for (NSDictionary *param in _query) {
+        NSString *name = param[@"name"];
+        NSArray *values = param[@"values"];
+        for (NSString *value in values) {
+            [queryString appendFormat:@"&%@=%@", [TKURIBuilder encode:name], [TKURIBuilder encode:value]];
+        }
     }
     if (queryString.length != 0) {
         [queryString replaceCharactersInRange:NSMakeRange(0, 1) withString:@"?"];
@@ -92,4 +96,33 @@
     return [NSURL URLWithString:[self buildString]];
 }
 
+-(void)appendQueryString:(NSString *)key value:(NSString *)value {
+    [self appendQueries:key value:@[value]];
+}
+
+-(void)appendQueries:(NSString *)key value:(NSArray *)values {
+    NSArray *names = [_query valueForKeyPath:@"name"];
+    NSInteger index = [names indexOfObject:key];
+    if (index != NSNotFound) {
+        NSMutableArray *values = [_query objectAtIndex:index][@"values"];
+        [values addObjectsFromArray:values];
+    } else {
+        [self replaceQueries:key values:values];
+    }
+}
+
+-(void)replaceQueryString:(NSString *)key value:(NSString *)value {
+    [self replaceQueries:key values: @[value]];
+}
+
+-(void)replaceQueries:(NSString *)key values:(NSArray *)values {
+    NSArray *names = [_query valueForKeyPath:@"name"];
+    NSInteger index = [names indexOfObject:key];
+    NSDictionary *pair = @{@"name" : key, @"values": [values mutableCopy]};
+    if (index != NSNotFound) {
+        [_query replaceObjectAtIndex:index withObject:pair];
+    } else {
+        [_query addObject:pair];
+    }
+}
 @end
