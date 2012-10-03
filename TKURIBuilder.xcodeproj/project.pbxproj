@@ -329,8 +329,10 @@
 				DSTROOT = /tmp/TKURIBuilder.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKURIBuilder/TKURIBuilder-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -341,8 +343,10 @@
 				DSTROOT = /tmp/TKURIBuilder.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKURIBuilder/TKURIBuilder-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -396,6 +400,7 @@
 				B13A30F2161AF10D00602EE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B13A30F3161AF10D00602EE7 /* Build configuration list for PBXNativeTarget "TKURIBuilderTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +409,7 @@
 				B13A30F5161AF10D00602EE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
