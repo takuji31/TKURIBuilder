@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface TKURIBuilder : NSObject
-@property NSString *scheme;
-@property NSString *host;
-@property NSString *path;
-@property NSMutableArray *query;
-@property NSString *fragment;
+@property (nonatomic) NSString *scheme;
+@property (nonatomic) NSString *host;
+@property (nonatomic) NSString *path;
+@property (nonatomic) NSMutableArray *query;
+@property (nonatomic) NSString *fragment;
 
 -(id) init;
 /*
